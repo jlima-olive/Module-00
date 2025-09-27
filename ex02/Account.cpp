@@ -6,7 +6,7 @@
 /*   By: namejojo <namejojo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:33:32 by namejojo          #+#    #+#             */
-/*   Updated: 2025/09/28 00:42:39 by namejojo         ###   ########.fr       */
+/*   Updated: 2025/09/28 00:47:32 by namejojo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@
         std::cout << ";withdrawals:" << getNbWithdrawals() << std::endl;
     }
 /*          static funcions             */
+/*          static variables             */
+	int	Account::_nbAccounts = 0;
+	int	Account::_totalAmount = 0;
+	int	Account::_totalNbDeposits = 0;
+	int	Account::_totalNbWithdrawals = 0;
+/*          static variables             */
 
-	int				_accountIndex;
-	int				_amount;
-	int				_nbDeposits;
-	int				_nbWithdrawals;
-    
     Account::Account( int initial_deposit)
     {
         _amount = initial_deposit;
@@ -85,9 +86,10 @@
 	void	Account::makeDeposit( int deposit )
     {
 		_displayTimestamp();
+		_nbDeposits++;
 		std::cout << " index:" << _accountIndex << ";p_amount:" << checkAmount() << ";deposit:" << deposit;
         _amount += deposit;
-		std::cout << ";amount:" << _accountIndex << ";nb_deposits:" << ++_totalNbDeposits << std::endl;
+		std::cout << ";amount:" << _amount << ";nb_deposits:" << ++_totalNbDeposits << std::endl;
     }
 	bool	Account::makeWithdrawal( int withdrawal )
     {
@@ -96,7 +98,8 @@
         if (checkAmount() >= withdrawal)
 		{
             _amount -= withdrawal;
-			std::cout << ";amount:" << _accountIndex << ";nb_withdrawals:" << ++_totalNbWithdrawals << std::endl;
+			std::cout << ";amount:" << _amount << ";nb_withdrawals:" << ++_totalNbWithdrawals << std::endl;
+			_nbWithdrawals++;
 			return (true);
 		}
 		else
@@ -116,18 +119,12 @@
 		std::cout << std::endl;
     }
 
-/*          static variables             */
-	int	Account::_nbAccounts = 0;
-	int	Account::_totalAmount = 0;
-	int	Account::_totalNbDeposits = 0;
-	int	Account::_totalNbWithdrawals = 0;
-/*          static variables             */
 	void	Account::_displayTimestamp( void )
     {
 		std::chrono::time_point now = std::chrono::system_clock::now();
 		long time_t = std::chrono::system_clock::to_time_t(now);
 		tm tm = *std::localtime(&time_t);
 
-		printf("[%4d%02d%02d_", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+		printf("[%d%02d%02d_", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 		printf("%02d%02d%02d]", tm.tm_hour, tm.tm_min, tm.tm_sec);
     }
