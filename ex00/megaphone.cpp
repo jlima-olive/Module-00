@@ -4,9 +4,9 @@
 
 class MyMega
 {
-public:
+private:
     std::string str;
-
+public:
     void join(char **av, int ac)
     {
         for (int i = 1; i < ac; i++)
