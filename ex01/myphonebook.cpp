@@ -104,6 +104,7 @@ private:
 	Contact ctt[8];
 	int		calls;
 public:
+// 
 	PhoneBook()
 	{
 		calls = 0;
