@@ -6,13 +6,14 @@
 /*   By: namejojo <namejojo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:33:32 by namejojo          #+#    #+#             */
-/*   Updated: 2025/09/28 01:18:45 by namejojo         ###   ########.fr       */
+/*   Updated: 2025/09/28 13:40:08 by namejojo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <stdio.h>
+#include <time.h>
 #include <sys/time.h>
 #include <iomanip>
 
@@ -121,21 +122,11 @@
     }
 	void	Account::_displayTimestamp( void )
     {
-		struct timeval	var;
-		int				year;
-		int				feb;
-		int				sec;
+		time_t	var;
+		tm		*time_var;
 
-		gettimeofday(&var, NULL);
-		sec = var.tv_sec;
-		feb = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) + 28;
-		printf("[%d", (int)(sec / (60 * 60 * 24 * 365.25) + 1970));
-		printf("%02d", (int)(sec / (60 * 60 * 24 * 365.25)) % 12);
-		printf("%02d", (int)(sec / (60 * 60 * 24 * 365.25)) % 12);
-	// struct timeval time;
-
-    // gettimeofday(&time, NULL);
-	// std::cout << (int)(sec / (60 * 60 * 24 * 365.25) + 1970);
-	// std::cout << (int)((sec / (60 * 60 * 24 * 365.25) + 1970)) % 12;
-	// std::cout << (int)((sec / (60 * 60 * 24 * 365.25) + 1970)) % 12;
-    }
+		var = time(NULL);
+		time_var = localtime(&var);
+		printf("[%d%02d%02d_", time_var->tm_year + 1900, time_var->tm_mon + 1, time_var->tm_mday);
+		printf("%02d%02d%02d]", time_var->tm_hour, time_var->tm_min, time_var->tm_sec);
+	}
