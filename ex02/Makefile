@@ -1,12 +1,12 @@
-PROJ=myphonebook
+PROJ=Account
 
 NAME=${PROJ}.a
 
 CXX=c++
 
-SRC_FILES=${PROJ}.cpp
+SRC_FILES=${PROJ}.cpp tests.cpp
 
-OBJ_FILES=${PROJ}.o
+OBJ_FILES=${PROJ}.o tests.o
 
 AR=	ar rcs
 

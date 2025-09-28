@@ -10,7 +10,7 @@ OBJ_FILES=${PROJ}.o
 
 AR=	ar rcs
 
-CFLAGS= -Wall -Wextra -Werror
+CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 all: ${PROJ}
 
