@@ -6,7 +6,7 @@
 /*   By: namejojo <namejojo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:33:32 by namejojo          #+#    #+#             */
-/*   Updated: 2025/09/28 13:40:08 by namejojo         ###   ########.fr       */
+/*   Updated: 2025/09/28 16:29:42 by namejojo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,11 @@
 #include <iomanip>
 
 /*          static funcions             */
-	int	Account::getNbAccounts( void )
-    {
-        return (_nbAccounts);
-    }
-	int	Account::getTotalAmount( void )
-    {
-        return (_totalAmount);
-    }
-	int	Account::getNbDeposits( void )
-    {
-        return (_totalNbDeposits);
-    }
-	int	Account::getNbWithdrawals( void )
-    {
-        return (_totalNbWithdrawals);
-    }
+	int	Account::getNbAccounts( void )	{	return (_nbAccounts);			}
+	int	Account::getTotalAmount( void )	{	return (_totalAmount);			}
+	int	Account::getNbDeposits( void )	{	return (_totalNbDeposits);		}
+	int	Account::getNbWithdrawals( void ){	return (_totalNbWithdrawals);	}
+
 	void	Account::displayAccountsInfos( void )
     {
 		_displayTimestamp();
@@ -109,10 +98,8 @@
 		return (false);
     }
 
-	int		Account::checkAmount( void ) const
-    {
-        return (_amount);
-    }
+	int		Account::checkAmount( void ) const{	return (_amount);	}
+
 	void	Account::displayStatus( void ) const
     {
 		_displayTimestamp();
