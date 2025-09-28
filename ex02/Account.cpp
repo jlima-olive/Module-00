@@ -6,14 +6,15 @@
 /*   By: namejojo <namejojo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:33:32 by namejojo          #+#    #+#             */
-/*   Updated: 2025/09/28 00:47:32 by namejojo         ###   ########.fr       */
+/*   Updated: 2025/09/28 01:18:45 by namejojo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <stdio.h>
-#include <chrono>
+#include <sys/time.h>
+#include <iomanip>
 
 /*          static funcions             */
 	int	Account::getNbAccounts( void )
@@ -118,13 +119,23 @@
 		std::cout << ";deposits:" << _nbDeposits << ";withdrawals:" << _nbWithdrawals;
 		std::cout << std::endl;
     }
-
 	void	Account::_displayTimestamp( void )
     {
-		std::chrono::time_point now = std::chrono::system_clock::now();
-		long time_t = std::chrono::system_clock::to_time_t(now);
-		tm tm = *std::localtime(&time_t);
+		struct timeval	var;
+		int				year;
+		int				feb;
+		int				sec;
 
-		printf("[%d%02d%02d_", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
-		printf("%02d%02d%02d]", tm.tm_hour, tm.tm_min, tm.tm_sec);
+		gettimeofday(&var, NULL);
+		sec = var.tv_sec;
+		feb = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) + 28;
+		printf("[%d", (int)(sec / (60 * 60 * 24 * 365.25) + 1970));
+		printf("%02d", (int)(sec / (60 * 60 * 24 * 365.25)) % 12);
+		printf("%02d", (int)(sec / (60 * 60 * 24 * 365.25)) % 12);
+	// struct timeval time;
+
+    // gettimeofday(&time, NULL);
+	// std::cout << (int)(sec / (60 * 60 * 24 * 365.25) + 1970);
+	// std::cout << (int)((sec / (60 * 60 * 24 * 365.25) + 1970)) % 12;
+	// std::cout << (int)((sec / (60 * 60 * 24 * 365.25) + 1970)) % 12;
     }
